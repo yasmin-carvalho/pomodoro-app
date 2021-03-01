@@ -31,7 +31,7 @@
 }
 
 body{
-    background: vae(--background);
+    background: var(--background);
     color: var(--text);
 }
 
