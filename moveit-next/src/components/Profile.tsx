@@ -4,7 +4,7 @@ import styles from '../styles/components/Profile.module.css';
 
 
 export function Profile(){
-    const { level} = useContext(ChallengesContext);
+    const {level} = useContext(ChallengesContext);
 
 
     return(
