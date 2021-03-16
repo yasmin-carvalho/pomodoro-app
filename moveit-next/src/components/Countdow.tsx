@@ -1,10 +1,18 @@
-import { useState, useEffect, useContext } from 'react';
-import { ChallengesContext } from '../contexts/ChallengesContext';
+import { useContext } from 'react';
+import { CountdowContext } from '../contexts/CountdowContext';
 import styles from '../styles/components/Countdow.module.css';
 
 
 
 export function Countdow() {
+    const {
+        minutes, 
+        seconds, 
+        hasFinished, 
+        isActive, 
+        startCountdow, 
+        resetCountdow
+    } = useContext(CountdowContext)
 
     const [minuteLeft, minuteRight] = String(minutes).padStart(2, '0').split('');
     const [secondLeft, secondRight] = String(seconds).padStart(2, '0').split('');

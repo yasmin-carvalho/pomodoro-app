@@ -1,10 +1,10 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react"; 
 import { ChallengesContext } from "./ChallengesContext";
 
 interface CountdowContextData {
     minutes: number;
     seconds: number;
-    hasFinished: number;
+    hasFinished: boolean;
     isActive: boolean;
     startCountdow: () => void;
     resetCountdow: () => void;
@@ -14,14 +14,14 @@ interface CountdowProviderProps {
     children: ReactNode;
 }
 
-const CountdowContext = createContext ({} as CountdowContextData)
+export const CountdowContext = createContext ({} as CountdowContextData)
 
 let countdownTimeout: NodeJS.Timeout; 
 
 export function CountdowProvider ({ children }: CountdowProviderProps) {
     const { startNewChallenge } = useContext(ChallengesContext);
 
-    const [time, setTime] =useState(0.1 * 60);
+    const [time, setTime] =useState(25 * 60);
     const [isActive, setIsActive] = useState(false);
     const [hasFinished, setHasFinished] = useState(false);
 
@@ -36,7 +36,8 @@ export function CountdowProvider ({ children }: CountdowProviderProps) {
     function resetCountdow() {
         clearTimeout(countdownTimeout);
         setIsActive(false);
-        setTime(0.1*60)
+        setHasFinished(false);
+        setTime(0.1*60);
     }
 
     useEffect(() => {
@@ -58,7 +59,7 @@ export function CountdowProvider ({ children }: CountdowProviderProps) {
         <CountdowContext.Provider value={{
             minutes,
             seconds,
-            hasFinished,
+            hasFinished, 
             isActive,
             startCountdow,
             resetCountdow,
